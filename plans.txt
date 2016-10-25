@@ -1,0 +1,19 @@
+* Wrap it * Cell by cell
+
+1) Produce a single rule
+1.1 Menu
+1.1.1 Number of generations and width
+1.2 Take user input change it into a rule
+1.3 Apply the rule logic and print the next row (cell by cell (thread.sleep))
+1.4 Wrap it
+2) Load a rule
+3) Showcase all the rules
+4) Game of life
+
+
+menu.h
+menu.c
+1DCAlogic.h
+1DCAlogic.c
+gameOfLife.h
+gameOfLife.c
