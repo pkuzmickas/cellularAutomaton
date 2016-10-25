@@ -6,8 +6,8 @@
 CFLAGS = -g -Wall -Wextra –pedantic -I.
 
 build: 
-	g++ menu.cpp -o menu
+	g++ menu.cpp CA1DLogic.cpp -o exe
 clean:
-	rm -f menu
+	rm -f exe
 run:
-	./menu
+	./exe

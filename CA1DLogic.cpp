@@ -122,17 +122,3 @@ using namespace std;
 			value/=2;
 		}
 	}
-
-int main() {
-	int rule, WIDTH, GENS;
-
-	cout<< "Width: ";
-	cin >> WIDTH;
-	cout<< "GENS: ";
-	cin >> GENS;
-	cout<<"Rule: ";
-	cin>>rule;
-	CA1DLogic cl(WIDTH, GENS);
-	cl.printRule(rule);
-	return 0;
-}

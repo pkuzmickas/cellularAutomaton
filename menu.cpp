@@ -6,6 +6,7 @@
 *************************/
 
 #include "menu.h"
+#include "CA1DLogic.h"
 
 
 using namespace std;
@@ -55,14 +56,14 @@ void Menu::oneDCA(){
 			int ruleNo;
 			cout<<"Please enter the rule number, its between 0 and 255"<<endl;
 			cin>>ruleNo;
-			if(!cin || ruleNo<1 || ruleNo>255);
+			if(!cin || ruleNo<1 || ruleNo>255)
 			{
 				cout<<"That isn't a valid number! Please input a number between 0 and 255"<<endl;
 			}
 			else
 			{
 			CA1DLogic cad1dLogic1(width,generations);
-			cad1dLogic1.printRule();
+			cad1dLogic1.printRule(ruleNo);
 			}	
 		}
 	}
