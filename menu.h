@@ -8,11 +8,11 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
 
-#include <iostream.h>
+#include <iostream>
 
 class Menu {
 	public:
-		void main();//initialises the program
+		Menu();//constructor
 		void printMenu(); //prints the menu to the screen
 		void oneDCA(); //1 Dimensional cellular array
 		void showcase();//goes through all the rules and prints them to the screen in a sort of slideshow
@@ -23,5 +23,6 @@ class Menu {
 		int generations;
 		int width;
 		 //if(!cin) {cout<<"Error message"} can use a while loop to help it along
-		
-}
+
+};
+#endif
