@@ -12,12 +12,12 @@
 
 class Menu {
 	public:
-		main();
-		printMenu();
-		oneDCA(); //1 Dimensional cellular array
-		showcase();
-		gameOfLife();
-		loadRecent();
+		void main();//initialises the program
+		void printMenu(); //prints the menu to the screen
+		void oneDCA(); //1 Dimensional cellular array
+		void showcase();//goes through all the rules and prints them to the screen in a sort of slideshow
+		void gameOfLife();//creates a 2D cellular array with the special rules of Conway's Game of Life
+		void loadRecent();//loads a recent output from a txt file
 		
 	private:
 		int generations;
