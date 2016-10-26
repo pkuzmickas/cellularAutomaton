@@ -47,83 +47,37 @@ void CA1DLogic::printRule(int value) {
 	int currentLine[WIDTH];
 	for(int j=0; j<GENS; j++) {
 		for(int i=0; i<WIDTH; i++) {
+			int index2 = i;
+			int index3 = i;
 			if(i==0) {
-				if(ParentGen[i]==0 && ParentGen[i+1]==0 && ParentGen[WIDTH-1]==0) { // element 1
-					currentLine[i]=Rule[0];
-				}
-				else if(ParentGen[i]==0 && ParentGen[i+1]==1 && ParentGen[WIDTH-1]==0) { // element 1
-					currentLine[i]=Rule[1];
-				}
-				else if(ParentGen[i]==1 && ParentGen[i+1]==0 && ParentGen[WIDTH-1]==0) { // element 1
-					currentLine[i]=Rule[2];
-				}
-				else if(ParentGen[i]==1 && ParentGen[i+1]==1 && ParentGen[WIDTH-1]==0) { // element 1
-					currentLine[i]=Rule[3];
-				}
-				else if(ParentGen[i]==0 && ParentGen[i+1]==0 && ParentGen[WIDTH-1]==1) { // element 1
-					currentLine[i]=Rule[4];
-				}
-				else if(ParentGen[i]==0 && ParentGen[i+1]==1 && ParentGen[WIDTH-1]==1) { // element 1
-					currentLine[i]=Rule[5];
-				}
-				else if(ParentGen[i]==1 && ParentGen[i+1]==0 && ParentGen[WIDTH-1]==1) { // element 1
-					currentLine[i]=Rule[6];
-				}
-				else if(ParentGen[i]==1 && ParentGen[i+1]==1 && ParentGen[WIDTH-1]==1) { // element 1
-					currentLine[i]=Rule[7];
-				}
+				index3 = WIDTH;
 			}
 			else if(i==WIDTH-1) {
-				if(ParentGen[i]==0 && ParentGen[0]==0 && ParentGen[i-1]==0) { // element 1
-					currentLine[i]=Rule[0];
-				}
-				else if(ParentGen[i]==0 && ParentGen[0]==1 && ParentGen[i-1]==0) { // element 1
-					currentLine[i]=Rule[1];
-				}
-				else if(ParentGen[i]==1 && ParentGen[0]==0 && ParentGen[i-1]==0) { // element 1
-						currentLine[i]=Rule[2];
-				}
-				else if(ParentGen[i]==1 && ParentGen[0]==1 && ParentGen[i-1]==0) { // element 1
-					currentLine[i]=Rule[3];
-				}
-				else if(ParentGen[i]==0 && ParentGen[0]==0 && ParentGen[i-1]==1) { // element 1
-					currentLine[i]=Rule[4];
-				}
-				else if(ParentGen[i]==0 && ParentGen[0]==1 && ParentGen[i-1]==1) { // element 1
-					currentLine[i]=Rule[5];
-				}
-				else if(ParentGen[i]==1 &&ParentGen[0]==0 && ParentGen[i-1]==1) { // element 1
-					currentLine[i]=Rule[6];
-				}
-				else if(ParentGen[i]==1 && ParentGen[0]==1 && ParentGen[i-1]==1) { // element 1
-					currentLine[i]=Rule[7];
-				}
+				index2 = -1;
 			}
-			else {
-				if(ParentGen[i]==0 && ParentGen[i+1]==0 && ParentGen[i-1]==0) { // element 1
-					currentLine[i]=Rule[0];
-				}
-				else if(ParentGen[i]==0 && ParentGen[i+1]==1 && ParentGen[i-1]==0) { // element 1
-					currentLine[i]=Rule[1];
-				}
-				else if(ParentGen[i]==1 && ParentGen[i+1]==0 && ParentGen[i-1]==0) { // element 1
-					currentLine[i]=Rule[2];
-				}
-				else if(ParentGen[i]==1 && ParentGen[i+1]==1 && ParentGen[i-1]==0) { // element 1
-					currentLine[i]=Rule[3];
-				}
-				else if(ParentGen[i]==0 && ParentGen[i+1]==0 && ParentGen[i-1]==1) { // element 1
-					currentLine[i]=Rule[4];
-				}
-				else if(ParentGen[i]==0 && ParentGen[i+1]==1 && ParentGen[i-1]==1) { // element 1
-					currentLine[i]=Rule[5];
-				}
-				else if(ParentGen[i]==1 && ParentGen[i+1]==0 && ParentGen[i-1]==1) { // element 1
-					currentLine[i]=Rule[6];
-				}
-				else if(ParentGen[i]==1 && ParentGen[i+1]==1 && ParentGen[i-1]==1) { // element 1
-					currentLine[i]=Rule[7];
-				}
+			if(ParentGen[i]==0 && ParentGen[index2+1]==0 && ParentGen[index3-1]==0) { // element 1
+				currentLine[i]=Rule[0];
+			}
+			else if(ParentGen[i]==0 && ParentGen[index2+1]==1 && ParentGen[index3-1]==0) { // element 1
+				currentLine[i]=Rule[1];
+			}
+			else if(ParentGen[i]==1 && ParentGen[index2+1]==0 && ParentGen[index3-1]==0) { // element 1
+				currentLine[i]=Rule[2];
+			}
+			else if(ParentGen[i]==1 && ParentGen[index2+1]==1 && ParentGen[index3-1]==0) { // element 1
+				currentLine[i]=Rule[3];
+			}
+			else if(ParentGen[i]==0 && ParentGen[index2+1]==0 && ParentGen[index3-1]==1) { // element 1
+				currentLine[i]=Rule[4];
+			}
+			else if(ParentGen[i]==0 && ParentGen[index2+1]==1 && ParentGen[index3-1]==1) { // element 1
+				currentLine[i]=Rule[5];
+			}
+			else if(ParentGen[i]==1 && ParentGen[index2+1]==0 && ParentGen[index3-1]==1) { // element 1
+				currentLine[i]=Rule[6];
+			}
+			else if(ParentGen[i]==1 && ParentGen[index2+1]==1 && ParentGen[index3-1]==1) { // element 1
+				currentLine[i]=Rule[7];
 			}
 		}
 		printLine(currentLine);
