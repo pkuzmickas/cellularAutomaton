@@ -5,7 +5,8 @@
 	Cellular Automaton
 *************************/
 
-
+#ifndef CA1DLOGIC_H_INCLUDED
+#define CA1DLOGIC_H_INCLUDED
 #include <iostream>
 
 using namespace std;
@@ -20,3 +21,4 @@ class CA1DLogic {
 		void setRule(int value); //converts the decimal given into a binary array
 		void printLine(int gen[]);
 };
+#endif

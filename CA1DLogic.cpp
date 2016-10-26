@@ -39,7 +39,10 @@ void CA1DLogic::printRule(int value) {
 	for(int i=0; i<WIDTH; i++) ParentGen[i] = 0;
 	ParentGen[WIDTH/2]=1;
 	printLine(ParentGen);
-	for(int i=0; i<WIDTH; i++) file << ParentGen[i];
+	for(int i=0; i<WIDTH; i++) {
+		if(ParentGen[i]==0) file << "\u2588";
+		if(ParentGen[i]==1) file << "\u2591";
+	}
 	file << endl;
 	int currentLine[WIDTH];
 	for(int j=0; j<GENS; j++) {
@@ -124,7 +127,11 @@ void CA1DLogic::printRule(int value) {
 			}
 		}
 		printLine(currentLine);
-		for(int i=0; i<WIDTH; i++) file << currentLine[i];
+		for(int i=0; i<WIDTH; i++) {
+			if(currentLine[i]==0) file << "\u2588";
+			if(currentLine[i]==1) file << "\u2591";
+			
+		}
 		file<<endl;
 		for(int i=0; i<WIDTH; i++) ParentGen[i]=currentLine[i];
 		this_thread::sleep_for(chrono::milliseconds(100));

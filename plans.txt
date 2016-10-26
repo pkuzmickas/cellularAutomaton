@@ -9,8 +9,8 @@
 2) Load a rule
 3) Showcase all the rules
 4) Game of life
-4.1 Print selection of Game of Lifes (https://bitstorm.org/gameoflife/)
-gameOfLife.playGame(0-6);
+4.1 Print selection of Game of Lifes (https://bitstorm.org/gameoflife/) 
+gameOfLife.playGame(0-6); User is +1 in menu option
 
 
 menu.h
@@ -19,3 +19,4 @@ menu.c
 1DCAlogic.c
 gameOfLife.h
 gameOfLife.c
+For loading file -> look up ifstream(); Can read line by line and print out to screen (cat)
