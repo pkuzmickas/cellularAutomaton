@@ -9,6 +9,7 @@
 #define MENU_H_INCLUDED
 
 #include <iostream>
+#include <fstream>
 
 class Menu {
 	public:
@@ -18,7 +19,7 @@ class Menu {
 		void showcase();//goes through all the rules and prints them to the screen in a sort of slideshow
 		void gameOfLife();//creates a 2D cellular array with the special rules of Conway's Game of Life
 		void loadRecent();//loads a recent output from a txt file
-		
+		bool findSize(); //finds the width and no. of generations the user wants and returns if they are valid or not
 	private:
 		int generations;
 		int width;

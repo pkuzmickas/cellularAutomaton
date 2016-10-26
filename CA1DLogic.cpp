@@ -12,6 +12,7 @@
 using namespace std;
 
 
+
 CA1DLogic::CA1DLogic(int width, int generations) {
 	WIDTH = width;
 	GENS = generations;
