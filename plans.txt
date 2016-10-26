@@ -9,6 +9,8 @@
 2) Load a rule
 3) Showcase all the rules
 4) Game of life
+4.1 Print selection of Game of Lifes (https://bitstorm.org/gameoflife/)
+gameOfLife.playGame(0-6);
 
 
 menu.h
