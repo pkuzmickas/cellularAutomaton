@@ -17,20 +17,20 @@ Menu::Menu(){ //constructor for menu
 	int generations =0;
 }
 
-void Menu::printMenu(){
+void Menu::printMenu(){ //prints out the standard menu
 	cout<<"======================================================"<<endl;
 	cout<<"1. Create a single dimensional Cellular array"<<endl;
 	cout<<"2. Load the most recent output"<<endl;
 	cout<<"3. Showcase all the rules"<<endl;
 	cout<<"4. Conway's Game of Life"<<endl;
-	cout<<"0. Exit"<<endl;
+	cout<<"5. Exit"<<endl;
 	cout<<"======================================================"<<endl;
 	cout<<"Please enter an integer to choose the option you want"<<endl;
 	cout<<"======================================================"<<endl;
 }
 
 bool Menu::findSize() //finds the width and number of generations of the automoman and returns if its valid or not
-{
+{ //width and generations are fields 
 	cout<<"Please enter the Width of the Automaton"<<endl;
 	cout<<"This width should be greater than or equal to 8"<<endl;
 	cin>>width;
@@ -62,57 +62,19 @@ bool Menu::findSize() //finds the width and number of generations of the automom
 }
 
 void Menu::oneDCA(){
-	/*cout<<"======================================================"<<endl;
-	cout<<"Please enter the Width of the Automaton"<<endl;
-	cout<<"This width should be greater than or equal to 8"<<endl;
-	cin>>width;
-	if(!cin || width < 8) //checks to see if its valid or not
-	{
-		cout<<"That isn't a valid number! Please input a number greater than 8!"<<endl;
-	}
-	else
-	{
-		cout<<"Your width is :"<<width<<endl;
-
-		cout<<"======================================================"<<endl;
-		cout<<"Please enter the number of generations the Automaton should span"<<endl;
-		cin>>generations;
-
-		if(!cin || generations <=0)
-		{
-			cout<<"That isn't a valid number! Please input a number greater than 0"<<endl;
-		}
-		else
-		{
-			cout<<"The number of generations is :"<<generations<<endl;
-			cout<<"======================================================"<<endl;
-			int ruleNo;
-			cout<<"Please enter the rule number, its between 0 and 255"<<endl;
-			cin>>ruleNo;
-			if(!cin || ruleNo<1 || ruleNo>255)
-			{
-				cout<<"That isn't a valid number! Please input a number between 0 and 255"<<endl;
-			}
-			else
-			{
-			CA1DLogic cad1dLogic1(width,generations);
-			cad1dLogic1.printRule(ruleNo);
-			}	
-		}
-	}*/
 	if(findSize() == true)
 	{
 		int ruleNo;
 		cout<<"Please enter the rule number, its between 0 and 255"<<endl;
 		cin>>ruleNo;
-		if(!cin || ruleNo<1 || ruleNo>255)
+		if(!cin || ruleNo<0 || ruleNo>255)
 		{
 			cout<<"That isn't a valid number! Please input a number between 0 and 255"<<endl;
 		}
 		else
 		{
-			CA1DLogic cad1dLogic1(width,generations);
-			cad1dLogic1.printRule(ruleNo);
+			CA1DLogic cad1dLogic1(width,generations); //creates an object of CA1DLogic
+			cad1dLogic1.printRule(ruleNo); //Starts printing the rule
 		}
 	
 	}
@@ -177,13 +139,13 @@ void Menu::gameOfLife()
 			cout<<"5. Lightweight Spaceship"<<endl;
 			cout<<"6. Tumbler"<<endl;
 			cout<<"7. Gosper Glider Gun"<<endl;
-			cout<<"0. Exit"<<endl;
+			cout<<"8. Exit"<<endl;
 			cout<<"======================================================"<<endl;
 			cout<<"Please enter an integer to choose the option you want"<<endl;
 			cout<<"======================================================"<<endl;
 
 			int noOfGame = 1; //the string holding the user's answer
-			while(noOfGame != 0)
+			while(noOfGame != 8)
 			{
 				cin>>noOfGame;
 				if(!cin)
@@ -196,34 +158,34 @@ void Menu::gameOfLife()
 					switch(noOfGame)
 					{
 						case 1:
-						game.playGame(noOfGame, speed); //the pattern they want to use and the speed of the game in milliseconds
+						game.playGame(noOfGame-1, speed); //the pattern they want to use and the speed of the game in milliseconds
 						break;
 
 						case 2:
-						game.playGame(noOfGame, speed);
+						game.playGame(noOfGame-1, speed);
 						break;
 
 						case 3:
-						game.playGame(noOfGame, speed);
+						game.playGame(noOfGame-1, speed);
 						break;
 
 						case 4:
-						game.playGame(noOfGame, speed);
+						game.playGame(noOfGame-1, speed);
 						break;
 
 						case 5:
-						game.playGame(noOfGame, speed);
+						game.playGame(noOfGame-1, speed);
 						break;
 
 						case 6:
-						game.playGame(noOfGame, speed);
+						game.playGame(noOfGame-1, speed);
 						break;
 
 						case 7:
-						game.playGame(noOfGame, speed);
+						game.playGame(noOfGame-1, speed);
 						break;
 
-						case 0:
+						case 8: //The 
 							cout<<"Are you sure you want to exit?"<<endl;
 						break;
 
@@ -243,44 +205,40 @@ void Menu::gameOfLife()
 
 int main(){
 	Menu menu1;
-	int choice = 1; //the string holding the user's answer
-	while(choice != 0)
+	string choice = "1"; //the string holding the user's answer
+	
+	while(choice != "5")
 	{
 		menu1.printMenu();
 		cin>>choice;
-		if(!cin)
-		{
-			cout<<"Sorry that isn't a number please choose again"<<endl;
-		}
-		else
-		{
-			switch(choice)
+		
+			switch(choice.at(0)) //gets the character at the start of the string
 			{
-				case 1:
+				case '1':
 				menu1.oneDCA();
 				break;
 
-				case 2:
+				case '2':
 				menu1.loadRecent();
 				break;
 
-				case 3:
+				case '3':
 				menu1.showcase();
 				break;
 
-				case 4:
+				case '4':
 				menu1.gameOfLife();
 				break;
 
-				case 0:
+				case '5':
 					cout<<"Are you sure you want to exit?"<<endl;
 				break;
 
 				default:
 				cout<<"That isn't a valid option!"<<endl;
+				break;
 			}
 		}
-	}
 
 	return 0;
 }
