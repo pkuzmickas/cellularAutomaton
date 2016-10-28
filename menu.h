@@ -26,4 +26,6 @@ class Menu {
 		 //if(!cin) {cout<<"Error message"} can use a while loop to help it along
 
 };
+
+//int strToInt(string str); //converts a string to an integer
 #endif

@@ -20,3 +20,5 @@ menu.c
 gameOfLife.h
 gameOfLife.c
 For loading file -> look up ifstream(); Can read line by line and print out to screen (cat)
+
+27th- Comment, use strings to validate the user input. Report?

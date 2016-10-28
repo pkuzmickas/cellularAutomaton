@@ -29,13 +29,19 @@ void Menu::printMenu(){ //prints out the standard menu
 	cout<<"======================================================"<<endl;
 }
 
+
 bool Menu::findSize() //finds the width and number of generations of the automoman and returns if its valid or not
 { //width and generations are fields 
 	cout<<"Please enter the Width of the Automaton"<<endl;
 	cout<<"This width should be greater than or equal to 8"<<endl;
+
+
 	cin>>width;
+
 	if(!cin || width < 8) //checks to see if its valid or not
 	{
+		cin.clear(); //clears the value of cin making sure things don't start looping
+		cin.ignore(1); 
 		cout<<"That isn't a valid number! Please input a number greater than 8!"<<endl;
 		return false; //The input isn't valid
 	}
@@ -49,6 +55,8 @@ bool Menu::findSize() //finds the width and number of generations of the automom
 
 		if(!cin || generations <=0)
 		{
+			cin.clear(); //clears the value of cin making sure things don't start looping
+			cin.ignore(1); 
 			cout<<"That isn't a valid number! Please input a number greater than 0"<<endl;
 			return false; //The input isn't valid
 		}
@@ -61,6 +69,8 @@ bool Menu::findSize() //finds the width and number of generations of the automom
 	}
 }
 
+
+
 void Menu::oneDCA(){
 	if(findSize() == true)
 	{
@@ -69,6 +79,8 @@ void Menu::oneDCA(){
 		cin>>ruleNo;
 		if(!cin || ruleNo<0 || ruleNo>255)
 		{
+			cin.clear(); //clears the value of cin making sure things don't start looping
+			cin.ignore(1); 
 			cout<<"That isn't a valid number! Please input a number between 0 and 255"<<endl;
 		}
 		else
@@ -118,85 +130,88 @@ void Menu::loadRecent() //loads the most recent saved pattern into the terminal
 
 void Menu::gameOfLife()
 {
-	if(findSize() == true)
+	cout<<"Please enter the speed of the Game (its in milliseconds)"<<endl;
+	int speed;
+	cin>>speed;
+	
+	if(!cin || speed<1)
 	{
-		cout<<"Please enter the speed of the Game (its in milliseconds)"<<endl;
-		int speed;
-		cin>>speed;
-		if(!cin)
-		{
-			cout<<"Sorry that isn't a number please choose again"<<endl;
-		}
-		else
-		{
-			cout<<"======================================================"<<endl;
-			cout<<"Please choose what pattern you would like"<<endl;
-			cout<<"======================================================"<<endl;
-			cout<<"1. Glider"<<endl;
-			cout<<"2. Small Exploder"<<endl;
-			cout<<"3. Exploder"<<endl;
-			cout<<"4. 10 Cell Row"<<endl;
-			cout<<"5. Lightweight Spaceship"<<endl;
-			cout<<"6. Tumbler"<<endl;
-			cout<<"7. Gosper Glider Gun"<<endl;
-			cout<<"8. Exit"<<endl;
-			cout<<"======================================================"<<endl;
-			cout<<"Please enter an integer to choose the option you want"<<endl;
-			cout<<"======================================================"<<endl;
+		cin.clear(); //clears the value of cin making sure things don't start looping
+		cin.ignore(1); 
+		cout<<"That isn't a valid input!"<<endl;
+	}
+	else
+	{
+		cout<<"======================================================"<<endl;
+		cout<<"Please choose what pattern you would like"<<endl;
+		cout<<"======================================================"<<endl;
+		cout<<"1. Glider"<<endl;
+		cout<<"2. Small Exploder"<<endl;
+		cout<<"3. Exploder"<<endl;
+		cout<<"4. 10 Cell Row"<<endl;
+		cout<<"5. Lightweight Spaceship"<<endl;
+		cout<<"6. Tumbler"<<endl;
+		cout<<"7. Gosper Glider Gun"<<endl;
+		cout<<"8. Exit"<<endl;
+		cout<<"======================================================"<<endl;
+		cout<<"Please enter an integer to choose the option you want"<<endl;
+		cout<<"======================================================"<<endl;
 
-			int noOfGame = 1; //the string holding the user's answer
-			while(noOfGame != 8)
+		int noOfGame = 0; //the string holding the user's answer
+		while(noOfGame != 8)
+		{
+			cin>>noOfGame;
+			if(!cin)
 			{
-				cin>>noOfGame;
-				if(!cin)
+				cin.clear(); //clears the value of cin making sure things don't start looping
+				cin.ignore(1);
+				cout<<"Sorry that isn't a number please choose again"<<endl;
+			}
+			else
+			{
+				GameOfLife game(50); //starts a game of life with width 50.
+				switch(noOfGame)
 				{
-					cout<<"Sorry that isn't a number please choose again"<<endl;
-				}
-				else
-				{
-					GameOfLife game(width); 
-					switch(noOfGame)
-					{
-						case 1:
-						game.playGame(noOfGame-1, speed); //the pattern they want to use and the speed of the game in milliseconds
-						break;
+					case 1:
+					game.playGame(noOfGame-1, speed); //the pattern they want to use and the speed of the game in milliseconds
+					break;
 
-						case 2:
-						game.playGame(noOfGame-1, speed);
-						break;
+					case 2:
+					game.playGame(noOfGame-1, speed);
+					break;
 
-						case 3:
-						game.playGame(noOfGame-1, speed);
-						break;
+					case 3:
+					game.playGame(noOfGame-1, speed);
+					break;
 
-						case 4:
-						game.playGame(noOfGame-1, speed);
-						break;
+					case 4:
+					game.playGame(noOfGame-1, speed);
+					break;
 
-						case 5:
-						game.playGame(noOfGame-1, speed);
-						break;
+					case 5:
+					game.playGame(noOfGame-1, speed);
+					break;
 
-						case 6:
-						game.playGame(noOfGame-1, speed);
-						break;
+					case 6:
+					game.playGame(noOfGame-1, speed);
+					break;
 
-						case 7:
-						game.playGame(noOfGame-1, speed);
-						break;
+					case 7:
+					game.playGame(noOfGame-1, speed);
+					break;
 
-						case 8: //The 
-							cout<<"Are you sure you want to exit?"<<endl;
-						break;
+					case 8: //The 
+						cout<<"Are you sure you want to exit?"<<endl;
+					break;
 
-						default:
-						cout<<"That isn't a valid option!"<<endl;
-					}
+					default:
+					cout<<"That isn't a valid option!"<<endl;
+					break;
 				}
 			}
-		
-		
 		}
+	
+	
 	}
 
 }
@@ -205,33 +220,40 @@ void Menu::gameOfLife()
 
 int main(){
 	Menu menu1;
-	string choice = "1"; //the string holding the user's answer
+	int choice = 1; //the int holding the user's answer
 	
-	while(choice != "5")
+	while(choice != 5)
 	{
 		menu1.printMenu();
 		cin>>choice;
-		
-			switch(choice.at(0)) //gets the character at the start of the string
+		if(!cin) //if cin hasn't got a int in it
+		{
+			cin.clear(); //clears the value of cin making sure things don't start looping
+			cin.ignore(1);
+			cout<<"That isn't a valid number!"<<endl;
+		}
+		else
+		{
+			switch(choice)
 			{
-				case '1':
+				case 1:
 				menu1.oneDCA();
 				break;
 
-				case '2':
+				case 2:
 				menu1.loadRecent();
 				break;
 
-				case '3':
+				case 3:
 				menu1.showcase();
 				break;
 
-				case '4':
+				case 4:
 				menu1.gameOfLife();
 				break;
 
-				case '5':
-					cout<<"Are you sure you want to exit?"<<endl;
+				case 5:
+				cout<<"Are you sure you want to exit?"<<endl;
 				break;
 
 				default:
@@ -239,6 +261,7 @@ int main(){
 				break;
 			}
 		}
+	}
 
 	return 0;
 }
