@@ -29,44 +29,51 @@ void Menu::printMenu(){ //prints out the standard menu
 	cout<<"======================================================"<<endl;
 }
 
+/*int strToInt(string str)
+{
+
+}*/
+
 
 bool Menu::findSize() //finds the width and number of generations of the automoman and returns if its valid or not
 { //width and generations are fields 
 	cout<<"Please enter the Width of the Automaton"<<endl;
 	cout<<"This width should be greater than or equal to 8"<<endl;
+	string strWidth; //the string variable to help error check
+	getline (cin, strWidth);
 
-
-	cin>>width;
-
-	if(!cin || width < 8) //checks to see if its valid or not
-	{
-		cin.clear(); //clears the value of cin making sure things don't start looping
-		cin.ignore(1); 
-		cout<<"That isn't a valid number! Please input a number greater than 8!"<<endl;
-		return false; //The input isn't valid
-	}
-	else
-	{
-		cout<<"Your width is :"<<width<<endl;
-
-		cout<<"======================================================"<<endl;
-		cout<<"Please enter the number of generations the Automaton should span"<<endl;
-		cin>>generations;
-
-		if(!cin || generations <=0)
+		width = stoi(strWidth); //don't need try catch statements here as one encapsulates the program
+		if(width < 8) //checks to see if its valid or not
 		{
-			cin.clear(); //clears the value of cin making sure things don't start looping
-			cin.ignore(1); 
-			cout<<"That isn't a valid number! Please input a number greater than 0"<<endl;
+			cout<<"That isn't a valid number! Please input a number greater than 8!"<<endl;
 			return false; //The input isn't valid
 		}
 		else
 		{
-			cout<<"The number of generations is :"<<generations<<endl;
+			cout<<"Your width is :"<<width<<endl;
+
 			cout<<"======================================================"<<endl;
-			return true;
+			cout<<"Please enter the number of generations the Automaton should span"<<endl;
+			string strGen; //The string version of generations so we can convert it
+			getline (cin, strGen);
+			generations = stoi(strGen); //don't need try catch statements here as one encapsulates the program
+
+			if(generations <=0)
+			{
+				cout<<"That isn't a valid number! Please input a number greater than 0"<<endl;
+				return false; //The input isn't valid
+			}
+			else
+			{
+				cout<<"The number of generations is :"<<generations<<endl;
+				cout<<"======================================================"<<endl;
+				return true;
+			}
+			
 		}
-	}
+	
+
+	
 }
 
 
@@ -76,11 +83,12 @@ void Menu::oneDCA(){
 	{
 		int ruleNo;
 		cout<<"Please enter the rule number, its between 0 and 255"<<endl;
-		cin>>ruleNo;
-		if(!cin || ruleNo<0 || ruleNo>255)
+		string strRule;
+		getline(cin, strRule);
+
+		ruleNo = stoi(strRule); //don't need try catch statements here as one encapsulates the program
+		if(ruleNo<0 || ruleNo>255)
 		{
-			cin.clear(); //clears the value of cin making sure things don't start looping
-			cin.ignore(1); 
 			cout<<"That isn't a valid number! Please input a number between 0 and 255"<<endl;
 		}
 		else
@@ -88,7 +96,6 @@ void Menu::oneDCA(){
 			CA1DLogic cad1dLogic1(width,generations); //creates an object of CA1DLogic
 			cad1dLogic1.printRule(ruleNo); //Starts printing the rule
 		}
-	
 	}
 
 }
@@ -130,15 +137,16 @@ void Menu::loadRecent() //loads the most recent saved pattern into the terminal
 
 void Menu::gameOfLife()
 {
-	cout<<"Please enter the speed of the Game (its in milliseconds)"<<endl;
+	cout<<"Please enter the speed of the Game (its in milliseconds). Recommended value is 100"<<endl;
 	int speed;
-	cin>>speed;
+	string strSpeed;
+
+	getline(cin, strSpeed);
+	speed = stoi(strSpeed);
 	
-	if(!cin || speed<1)
+	if(speed<1)
 	{
-		cin.clear(); //clears the value of cin making sure things don't start looping
-		cin.ignore(1); 
-		cout<<"That isn't a valid input!"<<endl;
+		cout<<"That isn't a valid input, speed needs to be greater than 1"<<endl;
 	}
 	else
 	{
@@ -157,58 +165,53 @@ void Menu::gameOfLife()
 		cout<<"Please enter an integer to choose the option you want"<<endl;
 		cout<<"======================================================"<<endl;
 
-		int noOfGame = 0; //the string holding the user's answer
+		int noOfGame = 0; 
+		string strNo;//the string holding the user's answer
+		getline(cin, strNo); 
+		noOfGame = stoi(strNo); //don't need try catch statements here as one encapsulates the program
+
 		while(noOfGame != 8)
 		{
-			cin>>noOfGame;
-			if(!cin)
+			GameOfLife game(50); //starts a game of life with width 50.
+			switch(noOfGame)
 			{
-				cin.clear(); //clears the value of cin making sure things don't start looping
-				cin.ignore(1);
-				cout<<"Sorry that isn't a number please choose again"<<endl;
+				case 1:
+				game.playGame(noOfGame-1, speed); //the pattern they want to use and the speed of the game in milliseconds
+				break;
+
+				case 2:
+				game.playGame(noOfGame-1, speed);
+				break;
+
+				case 3:
+				game.playGame(noOfGame-1, speed);
+				break;
+
+				case 4:
+				game.playGame(noOfGame-1, speed);
+				break;
+	
+				case 5:
+				game.playGame(noOfGame-1, speed);
+				break;
+
+				case 6:
+				game.playGame(noOfGame-1, speed);
+				break;
+
+				case 7:
+				game.playGame(noOfGame-1, speed);
+				break;
+
+				case 8: //The 
+					cout<<"Are you sure you want to exit?"<<endl;
+				break;
+
+				default:
+				cout<<"That isn't a valid option!"<<endl;
+				break;
 			}
-			else
-			{
-				GameOfLife game(50); //starts a game of life with width 50.
-				switch(noOfGame)
-				{
-					case 1:
-					game.playGame(noOfGame-1, speed); //the pattern they want to use and the speed of the game in milliseconds
-					break;
-
-					case 2:
-					game.playGame(noOfGame-1, speed);
-					break;
-
-					case 3:
-					game.playGame(noOfGame-1, speed);
-					break;
-
-					case 4:
-					game.playGame(noOfGame-1, speed);
-					break;
-
-					case 5:
-					game.playGame(noOfGame-1, speed);
-					break;
-
-					case 6:
-					game.playGame(noOfGame-1, speed);
-					break;
-
-					case 7:
-					game.playGame(noOfGame-1, speed);
-					break;
-
-					case 8: //The 
-						cout<<"Are you sure you want to exit?"<<endl;
-					break;
-
-					default:
-					cout<<"That isn't a valid option!"<<endl;
-					break;
-				}
-			}
+			
 		}
 	
 	
@@ -220,47 +223,49 @@ void Menu::gameOfLife()
 
 int main(){
 	Menu menu1;
-	int choice = 1; //the int holding the user's answer
-	
-	while(choice != 5)
+	string choice = "0"; //the int holding the user's answer
+	int intChoice = 0;
+	while(intChoice != 5)
 	{
 		menu1.printMenu();
-		cin>>choice;
-		if(!cin) //if cin hasn't got a int in it
+		getline(cin,choice);
+		try
 		{
-			cin.clear(); //clears the value of cin making sure things don't start looping
-			cin.ignore(1);
-			cout<<"That isn't a valid number!"<<endl;
-		}
-		else
-		{
-			switch(choice)
-			{
-				case 1:
-				menu1.oneDCA();
-				break;
+			intChoice = stoi(choice);s
+			
+				switch(intChoice)
+				{
+					case 1:
+					menu1.oneDCA();
+					break;
 
-				case 2:
-				menu1.loadRecent();
-				break;
+					case 2:
+					menu1.loadRecent();
+					break;
 
-				case 3:
-				menu1.showcase();
-				break;
+					case 3:
+					menu1.showcase();
+					break;
 
-				case 4:
-				menu1.gameOfLife();
-				break;
+					case 4:
+					menu1.gameOfLife();
+					break;
 
-				case 5:
-				cout<<"Are you sure you want to exit?"<<endl;
-				break;
+					case 5:
+					cout<<"Exiting!"<<endl;
+					break;
 
-				default:
-				cout<<"That isn't a valid option!"<<endl;
-				break;
+					default:
+					cout<<"That isn't a valid option!"<<endl;
+					break;
+				}
 			}
+		catch(invalid_argument e) 
+		//a catch statement that encloses the program that catches the errors that occurs when you try to convert a string to integer
+		{
+			cout<<"That isn't a valid input!"<<endl;
 		}
+
 	}
 
 	return 0;
